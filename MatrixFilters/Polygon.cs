@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MatrixFilters
 {
@@ -15,6 +17,22 @@ namespace MatrixFilters
         {
             X = x;
             Y = y;
+        }
+
+        public Point ToPoint() => new Point(X, Y);
+
+        static public int containsVertex(List<Vertex> vertices, double leeway, Vertex v)
+        {
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                double a = vertices[i].X - v.X;
+                double b = vertices[i].Y - v.Y;
+
+                //Pythagoras theorem, faster to square than to take a square root 
+                if (a * a + b * b < leeway * leeway)
+                    return i;
+            }
+            return -1;
         }
     }
     class Polygon
@@ -29,6 +47,7 @@ namespace MatrixFilters
                 vertices[i].Y += Y;
             }
         }
+        public List<Vertex> getPolygonVertices() => vertices;
         public bool IsPointInPolygon(int x, int y)
         {
             bool result = false;
@@ -37,7 +56,7 @@ namespace MatrixFilters
             {
                 if (vertices[i].Y < y && vertices[j].Y >= y || vertices[j].Y < y && vertices[i].Y >= y)
                 {
-                    if (vertices[i].X + (y - vertices[i].Y) / (vertices[j].Y - vertices[i].Y) * (vertices[j].X - vertices[i].X) < x)
+                    if (vertices[i].X + (double)(y - vertices[i].Y) / (double)(vertices[j].Y - vertices[i].Y) * (double)(vertices[j].X - vertices[i].X) < x)
                     {
                         result = !result;
                     }
@@ -46,6 +65,18 @@ namespace MatrixFilters
             }
             return result;
         }
+
+        public void Draw(PaintEventArgs e, Pen pen)
+        {
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                e.Graphics.DrawLine(pen, vertices[i].ToPoint(), vertices[(i + 1) % vertices.Count].ToPoint());
+                Rectangle rect = new Rectangle(vertices[i].X - 5, vertices[i].Y - 5, 10, 10);
+                e.Graphics.DrawEllipse(pen, rect);
+                e.Graphics.FillEllipse(Brushes.Black, rect);
+            }
+        }
+        
     }
 
 

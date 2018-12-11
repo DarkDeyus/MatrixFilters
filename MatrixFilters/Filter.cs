@@ -124,7 +124,7 @@ namespace MatrixFilters
                 for (int y = 1; y < height - 1; y++)
                 {
                     //use filter
-                    if(brush.PointInBrush(x,y))
+                    if(brush.PointInBrush(x, y))
                     {
                         int R = 0;
                         int G = 0;
@@ -144,6 +144,7 @@ namespace MatrixFilters
                         G = Math.Max(Math.Min(255, G), 0);
                         B = Math.Max(Math.Min(255, B), 0);
                         map[x, y] = new Pixel(R, G, B);
+                        
                     }
                     else
                     {

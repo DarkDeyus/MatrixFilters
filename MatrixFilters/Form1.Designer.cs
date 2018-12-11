@@ -42,6 +42,11 @@
             this.radioButtonCircleBrush = new System.Windows.Forms.RadioButton();
             this.radioButtonWholePicture = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDownMove = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxAutomaticDividers = new System.Windows.Forms.CheckBox();
+            this.numericUpDownDivider = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCustomFilter = new System.Windows.Forms.GroupBox();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
@@ -64,11 +69,6 @@
             this.radioButtonMeanRemoval = new System.Windows.Forms.RadioButton();
             this.radioButtonSharpen = new System.Windows.Forms.RadioButton();
             this.radioButtonIdentity = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDownDivider = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxAutomaticDividers = new System.Windows.Forms.CheckBox();
-            this.numericUpDownMove = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRedHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGreenHistogram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlueHistogram)).BeginInit();
@@ -76,6 +76,8 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRadius)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivider)).BeginInit();
             this.groupBoxCustomFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
@@ -86,8 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMove)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBoxRedHistogram
@@ -136,6 +136,10 @@
             this.pictureBoxPicture.TabIndex = 3;
             this.pictureBoxPicture.TabStop = false;
             this.pictureBoxPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPicture_Paint);
+            this.pictureBoxPicture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPicture_MouseClick);
+            this.pictureBoxPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPicture_MouseDown);
+            this.pictureBoxPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPicture_MouseMove);
+            this.pictureBoxPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxPicture_MouseUp);
             // 
             // buttonNewPicture
             // 
@@ -271,6 +275,77 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Wybór filtra macierzowego";
+            // 
+            // numericUpDownMove
+            // 
+            this.numericUpDownMove.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.numericUpDownMove.Location = new System.Drawing.Point(115, 412);
+            this.numericUpDownMove.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.numericUpDownMove.Minimum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownMove.Name = "numericUpDownMove";
+            this.numericUpDownMove.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMove.TabIndex = 18;
+            // 
+            // checkBoxAutomaticDividers
+            // 
+            this.checkBoxAutomaticDividers.AutoSize = true;
+            this.checkBoxAutomaticDividers.Checked = true;
+            this.checkBoxAutomaticDividers.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAutomaticDividers.Location = new System.Drawing.Point(19, 467);
+            this.checkBoxAutomaticDividers.Name = "checkBoxAutomaticDividers";
+            this.checkBoxAutomaticDividers.Size = new System.Drawing.Size(190, 17);
+            this.checkBoxAutomaticDividers.TabIndex = 17;
+            this.checkBoxAutomaticDividers.Text = "Automatyczne ustawianie dzielnika";
+            this.checkBoxAutomaticDividers.UseVisualStyleBackColor = true;
+            this.checkBoxAutomaticDividers.CheckedChanged += new System.EventHandler(this.checkBoxAutomaticDividers_CheckedChanged);
+            // 
+            // numericUpDownDivider
+            // 
+            this.numericUpDownDivider.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.numericUpDownDivider.DecimalPlaces = 8;
+            this.numericUpDownDivider.Enabled = false;
+            this.numericUpDownDivider.Location = new System.Drawing.Point(115, 441);
+            this.numericUpDownDivider.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownDivider.Name = "numericUpDownDivider";
+            this.numericUpDownDivider.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownDivider.TabIndex = 16;
+            this.numericUpDownDivider.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 443);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Dzielnik";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 414);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Przesunięcie";
             // 
             // groupBoxCustomFilter
             // 
@@ -545,77 +620,6 @@
             this.radioButtonIdentity.UseVisualStyleBackColor = true;
             this.radioButtonIdentity.CheckedChanged += new System.EventHandler(this.radioButtonFilter_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 414);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Przesunięcie";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 443);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Dzielnik";
-            // 
-            // numericUpDownDivider
-            // 
-            this.numericUpDownDivider.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.numericUpDownDivider.DecimalPlaces = 8;
-            this.numericUpDownDivider.Enabled = false;
-            this.numericUpDownDivider.Location = new System.Drawing.Point(115, 441);
-            this.numericUpDownDivider.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownDivider.Name = "numericUpDownDivider";
-            this.numericUpDownDivider.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownDivider.TabIndex = 16;
-            this.numericUpDownDivider.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // checkBoxAutomaticDividers
-            // 
-            this.checkBoxAutomaticDividers.AutoSize = true;
-            this.checkBoxAutomaticDividers.Checked = true;
-            this.checkBoxAutomaticDividers.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAutomaticDividers.Location = new System.Drawing.Point(19, 467);
-            this.checkBoxAutomaticDividers.Name = "checkBoxAutomaticDividers";
-            this.checkBoxAutomaticDividers.Size = new System.Drawing.Size(190, 17);
-            this.checkBoxAutomaticDividers.TabIndex = 17;
-            this.checkBoxAutomaticDividers.Text = "Automatyczne ustawianie dzielnika";
-            this.checkBoxAutomaticDividers.UseVisualStyleBackColor = true;
-            this.checkBoxAutomaticDividers.CheckedChanged += new System.EventHandler(this.checkBoxAutomaticDividers_CheckedChanged);
-            // 
-            // numericUpDownMove
-            // 
-            this.numericUpDownMove.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.numericUpDownMove.Location = new System.Drawing.Point(115, 412);
-            this.numericUpDownMove.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownMove.Minimum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownMove.Name = "numericUpDownMove";
-            this.numericUpDownMove.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownMove.TabIndex = 18;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,6 +633,9 @@
             this.Controls.Add(this.pictureBoxBlueHistogram);
             this.Controls.Add(this.pictureBoxGreenHistogram);
             this.Controls.Add(this.pictureBoxRedHistogram);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRedHistogram)).EndInit();
@@ -640,6 +647,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRadius)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivider)).EndInit();
             this.groupBoxCustomFilter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
@@ -650,8 +659,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMove)).EndInit();
             this.ResumeLayout(false);
 
         }
